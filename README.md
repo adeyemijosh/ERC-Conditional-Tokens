@@ -118,3 +118,77 @@ Returns positionID from collateral token and outcome collection associated to th
 ```js
 function getPositionId(IERC20 collateralToken, bytes32 collectionId) external pure returns (uint)
 ```
+
+### Events
+
+#### ConditionPreparation
+
+Emitted when a new condition is initialized
+
+```js
+event ConditionPreparation(
+        bytes32 indexed conditionId,
+        address indexed oracle,
+        bytes32 indexed questionId,
+        uint outcomeSlotCount
+    )
+```
+
+#### ConditionResolution
+
+Emitted when oracle executes `reportPayouts` with payouts for a certain `questionId`
+
+```js
+event ConditionResolution(
+        bytes32 indexed conditionId,
+        address indexed oracle,
+        bytes32 indexed questionId,
+        uint outcomeSlotCount,
+        uint[] payoutNumerators
+    )
+```
+
+#### PositionSplit
+
+Emitted when a user splits collateral or position into multiple outcome positions
+
+```js
+event PositionSplit(
+        address indexed stakeholder,
+        IERC20 collateralToken,
+        bytes32 indexed parentCollectionId,
+        bytes32 indexed conditionId,
+        uint[] partition,
+        uint amount
+    )
+```
+
+#### PositionsMerge
+
+Emitted when a user merges multiple positions back into a parent position or collateral
+
+```js
+event PositionsMerge(
+        address indexed stakeholder,
+        IERC20 collateralToken,
+        bytes32 indexed parentCollectionId,
+        bytes32 indexed conditionId,
+        uint[] partition,
+        uint amount
+    )
+```
+
+#### PayoutRedemption
+
+Emitted when a user redeems positions after resolution
+
+```js
+event PayoutRedemption(
+        address indexed redeemer,
+        IERC20 indexed collateralToken,
+        bytes32 indexed parentCollectionId,
+        bytes32 conditionId,
+        uint[] indexSets,
+        uint payout
+    )
+```

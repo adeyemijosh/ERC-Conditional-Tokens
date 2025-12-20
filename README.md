@@ -30,12 +30,25 @@ This ERC formalizes patterns that the prediction market industry has battle-test
 
 ## Adoption and Usage
 
+This section is non-normative.
+
+### Adoption
+
 - [Polymarket](https://docs.polymarket.com/developers/CTF/overview): Prediction markets using CTF on Polygon
 - [Seer](https://seer.pm): Prediction and [futarchy](https://seer-3.gitbook.io/seer-documentation/developers/interact-with-seer/futarchy-market) markets using CTF (Gnosis and Ethereum)
 - [Forkast](https://docs.forkast.gg/conditional-tokens-framework): Sports/gaming prediction markets using CTF-style conditional tokens (Arbitrum)
 - [Omen](https://omen.eth.link): Early CTF + Reality.eth prediction markets (legacy frontend; onchain markets persist)
 - [Predict Fun](https://defillama.com/protocol/predict-fun): Prediction markets using conditional token contracts (BNB Chain and Blast)
 - [OPINION](https://defillama.com/protocol/opinion): Prediction exchange using a CTF-derived conditional tokens design (BNB Chain)
+
+### Nested conditionals
+
+Nested positions (via `parentCollectionId`) allow conditioning a position on
+multiple conditions. This is used for (i) decision markets / futarchy, where
+downstream markets are only meaningful under a particular decision branch, and
+(ii) outcome refinement, where an existing outcome set is further split by
+introducing a child condition under that set (instead of mutating the parent
+condition).
 
 ## Specification
 

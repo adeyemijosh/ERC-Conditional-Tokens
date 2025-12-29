@@ -1,18 +1,30 @@
 ---
 eip: 9999
 title: Conditional Tokens
-description: An interface for tokens representing positions on outcomes that can be split, merged and redeemed based on oracle reported results
+description: A standard for conditional tokens that split, merge and are redeemable based on oracle reported outcomes
 author: shafu (@shafu0x), Behzad (@bitnician), Sarvad (@serverConnectd), Ynyesto (@ynyesto), lajarre (@lajarre)
 status: Draft
 type: Standards Track
 category: ERC
 created: 2025-12-16
-requires: 6909
+requires: 1155
 ---
+
+## Table of Contents
+
+- [Abstract](#abstract)
+- [Motivation](#motivation)
+- [Adoption and Usage](#adoption-and-usage)
+- [Specification](#specification)
+  - [Methods](#methods)
+  - [Events](#events)
+- [Example Lifecycle](#example-lifecycle)
+- [Security Considerations](#security-considerations)
+- [Copyright](#copyright)
 
 ## Abstract
 
-This ERC extends ERC-6909 with conditional tokens that allow participants to create and settle positions on future outcomes.
+This ERC extends ERC-1155 with conditional tokens that allow participants to create and settle positions on future outcomes.
 
 It introduces three core operations. Splitting collateral into outcome positions, merging positions back into collateral and redeeming positions after oracle resolution.
 
@@ -20,7 +32,7 @@ It introduces three core operations. Splitting collateral into outcome positions
 
 Prediction markets have demonstrated product market fit through platforms like Polymarket. The Gnosis Conditional Tokens framework from 2019 pioneered the core primitives of splitting, merging, and redeeming positions based on oracle outcomes. But there is no formal ERC standard, limiting interoperability.
 
-To enable a thriving ecosystem of prediction markets and futarchy governance we need a standard interface. This ERC addresses this through three core operations:
+To enable a thriving ecosystem of prediction markets we need a standard interface. This ERC addresses this through three core operations:
 
 1. **Condition Preparation**: Registers a condition with an oracle, question identifier and outcome count.
 2. **Position Splitting & Merging**: Converts collateral into outcome tokens (split) or recombines them (merge).
@@ -51,6 +63,8 @@ introducing a child condition under that set (instead of mutating the parent
 condition).
 
 ## Specification
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119 and RFC 8174.
 
 ### Methods
 
@@ -327,7 +341,7 @@ A participant deposits `100` units of collateral token `C` and splits it into ou
 - `partition = [0b01, 0b10]`
 - `amount = 100`
 
-This transfers `100` units of collateral `C` to the conditional tokens contract and mints two ERC-6909 outcome positions representing:
+This transfers `100` units of collateral `C` to the conditional tokens contract and mints two ERC-1155 outcome positions representing:
 - outcome **Yes** (`indexSet = 0b01`)
 - outcome **No** (`indexSet = 0b10`)
 
@@ -372,3 +386,7 @@ Oracle resolution transactions are visible in the mempool. Attackers can front-r
 ### Denial of Service
 
 `prepareCondition` is permissionless and allocates storage. Attackers can spam condition creation to bloat storage. Implementations MAY require deposits or restrict creation to authorized registries.
+
+## Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).

@@ -16,7 +16,9 @@ requires: 1155
 - [Motivation](#motivation)
 - [Adoption and Usage](#adoption-and-usage)
 - [Specification](#specification)
-  - [Methods](#methods)
+  - [Condition Lifecycle](#condition-lifecycle)
+  - [Position Operations](#position-operations)
+  - [View Functions](#view-functions)
   - [Events](#events)
 - [Example Lifecycle](#example-lifecycle)
 - [Security Considerations](#security-considerations)
@@ -66,7 +68,7 @@ condition).
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119 and RFC 8174.
 
-### Methods
+### Condition Lifecycle
 
 #### prepareCondition
 
@@ -99,6 +101,8 @@ Oracle resolves a condition by calling this function and reports payouts for eac
 ```js
 function reportPayouts(bytes32 questionId, uint[] calldata payouts) external
 ```
+
+### Position Operations
 
 #### splitPosition
 
@@ -187,6 +191,8 @@ nested.
 ```js
 function redeemPositions(IERC20 collateralToken, bytes32 parentCollectionId, bytes32 conditionId, uint[] calldata indexSets) external
 ```
+
+### View Functions
 
 #### getOutcomeSlotCount
 

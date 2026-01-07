@@ -34,7 +34,7 @@ It introduces three core operations. Splitting collateral into outcome positions
 
 Prediction markets have demonstrated product market fit through platforms like Polymarket. The Gnosis Conditional Tokens framework from 2019 pioneered the core primitives of splitting, merging, and redeeming positions based on oracle outcomes. But there is no formal ERC standard, limiting interoperability.
 
-To enable a thriving ecosystem of prediction markets we need a standard interface. This ERC addresses this through three core operations:
+To enable a thriving ecosystem of prediction markets, we need a standard interface. This ERC addresses this through three core operations:
 
 1. **Condition Preparation**: Registers a condition with an oracle, question identifier and outcome count.
 2. **Position Splitting & Merging**: Converts collateral into outcome tokens (split) or recombines them (merge).
@@ -126,7 +126,7 @@ Convert one `parent` stake into multiple `child` outcome positions defined by `p
 split is the subset position for `indexSetUnion` (not collateral), even if `parentCollectionId == bytes32(0)`.
 
 A `parent` outcome collection represents a position already conditioned on prior outcomes, while a `child` outcome collection represents an additional condition on top of it.
-E.g. Assume to condition statements C1 and C2 where C1 is the parent condition of C2 where:
+E.g. Assume two condition statements C1 and C2 where C1 is the parent condition of C2 where:
 
 1.  C1 is “ETH > $3k?”
 2.  C2 is “ETH > $4k?”
